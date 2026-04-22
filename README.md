@@ -66,3 +66,17 @@ A structured health scoring system with 5 dimensions:
 ## License
 
 MIT
+
+## 🔥 Why Skill Health Monitor?
+
+Code health audit tools like [code-overhaul-skill](https://github.com/ehmo/code-overhaul-skill) audit your *codebase*. **Skill Health Monitor** audits your *skill collection* — the AI agent capabilities you depend on daily.
+
+| | Code Audit Tools | Skill Health Monitor |
+|---|---|---|
+| Target | Source code | Agent skills (SKILL.md) |
+| Dimensions | Code quality, security | Completeness, security, quality, consistency, maintenance |
+| Output | Code smells | Skill scorecard |
+| Dependencies | Language-specific linters | None (pure markdown) |
+
+**Use both!** Audit your code, audit your skills.
+
