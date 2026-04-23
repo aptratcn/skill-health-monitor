@@ -1,34 +1,40 @@
 # Skill Health Monitor 🏥
 
-> Automated health checks for your AI agent skill collection
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Agent Skills](https://img.shields.io/badge/type-agent--skill-blue)](SKILL.md)
+[![Skill](https://img.shields.io/badge/Skill-Health_Monitor-orange.svg)]()
 
-**Why this exists:** Most AI agent operators have 10-50 skills. Over time, skills rot — descriptions become vague, triggers stop working, dependencies drift. Silent failures follow. This skill makes maintenance systematic.
+> **10+ skills? Rotting silently? Audit them before they fail you.**
 
 ## The Problem
 
-- ❌ No visibility into skill health across a collection
-- ❌ Rotting skills cause silent agent failures
-- ❌ No standard way to evaluate skill quality
-- ❌ Duplicate skills waste context window space
+Most AI agent operators accumulate 10-50 skills over time. Without maintenance:
+
+| Symptom | Cause | Impact |
+|---------|-------|--------|
+| Skill never triggers | Outdated trigger phrases | Waste of context window |
+| Agent gives bad advice | Skills conflict or overlap | Silent wrong behavior |
+| No one finds your repo | Missing tags, vague description | 0 stars forever |
+| Things break after updates | Dependency drift | Cascading failures |
+
+**Real data:** The average [skill-doctor](https://github.com/xigua-wang/skill-doctor) scan finds 3-5 issues per skill collection. Unchecked, these compound into silent failures.
 
 ## The Solution
 
-A structured health scoring system with 5 dimensions:
-- **Structure** (25%) — File completeness and conventions
-- **Content** (25%) — Description quality and documentation
-- **Activity** (20%) — Recent maintenance and updates
-- **Compatibility** (15%) — Framework version alignment
-- **Discoverability** (15%) — Tags, searchability, quick-start
+A **structured 5-dimension health scoring system** (0-100 points):
+
+| Dimension | Weight | What It Checks |
+|-----------|--------|---------------|
+| 🏗️ **Structure** | 25% | File completeness (SKILL.md, README.md, LICENSE) |
+| 📝 **Content** | 25% | Description quality, trigger phrases, examples |
+| 🔄 **Activity** | 20% | Recent commits, version bumps, responsiveness |
+| 🔗 **Compatibility** | 15% | Framework version alignment, breaking changes |
+| 🔍 **Discoverability** | 15% | Tags, searchability, quick-start guide |
 
 ## Quick Start
 
-```
+```bash
 # Install as an agent skill
 # Claude Code: Copy SKILL.md to .claude/skills/skill-health-monitor/
-# Cursor: Copy SKILL.md to .cursor/rules/skill-health-monitor.mdc
 # OpenClaw: Copy to ~/.openclaw/workspace/skills/skill-health-monitor/
 
 # Then tell your agent:
@@ -42,41 +48,48 @@ A structured health scoring system with 5 dimensions:
 | Score | Rating | Action |
 |-------|--------|--------|
 | 90-100 | 🟢 Healthy | Maintain |
-| 70-89  | 🟡 Needs Attention | Minor fixes |
-| 50-69  | 🟠 Degrading | Schedule update |
+| 70-89  | 🟡 Needs Attention | Minor fixes (missing tags, vague description) |
+| 50-69  | 🟠 Degrading | Schedule update (outdated patterns, missing files) |
 | 0-49   | 🔴 Critical | Rewrite or retire |
+
+## Sample Audit Output
+
+```markdown
+## Skill Health Report — 2026-04-24
+
+### 🏥 Total: 12 skills audited
+
+| Skill | Score | Status | Top Issue |
+|-------|-------|--------|-----------|
+| prompt-guard | 92 | 🟢 | None |
+| token-budget | 85 | 🟡 | Missing GitHub topics |
+| skill-xyz | 45 | 🔴 | No README, no LICENSE |
+| ... | ... | ... | ... |
+
+### Priority Actions
+1. 🔴 Retire skill-xyz (score: 45) — missing critical files
+2. 🟠 Update skill-old (score: 62) — outdated trigger phrases
+3. 🟡 Add topics to token-budget — improve discoverability
+```
 
 ## What Makes This Different
 
 1. **Structured scoring** — Not "looks good to me" but a repeatable 100-point scale
-2. **5 dimensions** — Catches both surface issues (missing README) and deep ones (outdated dependencies)
+2. **5 dimensions** — Catches surface issues (missing README) AND deep issues (outdated patterns)
 3. **Action-oriented** — Every score comes with concrete next steps
 4. **Collection-aware** — Designed for managing 10+ skills, not just one
 5. **Trackable** — Diff reports show improvement or degradation over time
 
-## Works With
+## Related Skills
 
-- [OpenClaw](https://openclaw.ai)
-- Claude Code
-- Cursor
-- Codex
-- Gemini CLI
-- Any agent framework that reads skill files
+- [**Code Audit**](https://github.com/aptratcn/skill-code-audit) — Audit your codebase quality
+- [**MCP Security Audit**](https://github.com/aptratcn/skill-mcp-security-audit) — Audit MCP server security
+- [**Quality Evaluator**](https://github.com/aptratcn/skill-quality-eval) — Evaluate agent output quality
 
 ## License
 
 MIT
 
-## 🔥 Why Skill Health Monitor?
+---
 
-Code health audit tools like [code-overhaul-skill](https://github.com/ehmo/code-overhaul-skill) audit your *codebase*. **Skill Health Monitor** audits your *skill collection* — the AI agent capabilities you depend on daily.
-
-| | Code Audit Tools | Skill Health Monitor |
-|---|---|---|
-| Target | Source code | Agent skills (SKILL.md) |
-| Dimensions | Code quality, security | Completeness, security, quality, consistency, maintenance |
-| Output | Code smells | Skill scorecard |
-| Dependencies | Language-specific linters | None (pure markdown) |
-
-**Use both!** Audit your code, audit your skills.
-
+**Don't let your skills rot in silence. Audit early, audit often.**
